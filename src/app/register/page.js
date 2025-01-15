@@ -17,16 +17,22 @@ export default function RegisterPage() {
         setSuccess(false);
 
         try {
-            const response = await fetch("http://localhost:8080/api/auth/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password,name,surname,profession,phoneNum }),
+            const response = await fetch("http://localhost:8080/api/v1/auth/register", {
+                method: "POST", // POST request for registration
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password, name, surname, profession, phoneNum }), // Include all form data
             });
 
-            if (!response.ok) throw new Error("Registration failed");
-            setSuccess(true);
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message || "Registration failed"); // Handle error message from backend
+            }
+
+            setSuccess(true); // Set success flag if registration is successful
         } catch (err) {
-            setError(err.message);
+            setError(err.message); // Display error message
         }
     };
 
@@ -49,36 +55,36 @@ export default function RegisterPage() {
                     required
                 />
                 <input
-                    type="name"
-                    placeholder="name"
+                    type="text"
+                    placeholder="Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
                 />
                 <input
-                    type="surname"
-                    placeholder="surname"
+                    type="text"
+                    placeholder="Surname"
                     value={surname}
                     onChange={(e) => setSurname(e.target.value)}
                     required
                 />
                 <input
-                    type="profession"
-                    placeholder="profession"
+                    type="text"
+                    placeholder="Profession"
                     value={profession}
                     onChange={(e) => setProfession(e.target.value)}
                     required
                 />
                 <input
-                    type="phoneNum"
-                    placeholder="phoneNum"
+                    type="tel"
+                    placeholder="Phone Number"
                     value={phoneNum}
                     onChange={(e) => setPhoneNum(e.target.value)}
                     required
                 />
                 <button type="submit">Register</button>
             </form>
-            {error && <p style={{color: "red"}}>{error}</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
             {success && <p>Registration successful! You can now log in.</p>}
         </div>
     );

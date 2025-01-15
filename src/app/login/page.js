@@ -13,16 +13,24 @@ export default function LoginPage() {
         setError(null);
 
         try {
-            const response = await fetch("http://localhost:8080/api/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
+            const response = await fetch("http://localhost:8080/api/v1/auth/login", {
+                method: "POST", // Use POST instead of GET for login
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify({ email, password }),
             });
 
             if (!response.ok) throw new Error("Invalid credentials");
-            const { token } = await response.json();
-            localStorage.setItem("token", token);
-            router.push("/dashboard");
+            const data = await response.json();
+            const { token } = data;
+
+            if (token) {
+                localStorage.setItem("token", token);
+                router.push("/dashboard");
+            } else {
+                throw new Error("Authentication failed");
+            }
         } catch (err) {
             setError(err.message);
         }
