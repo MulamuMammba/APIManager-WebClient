@@ -14,27 +14,24 @@ export default function EmailSearch() {
 
       try {
           const options = {
-              method,
-              ...(method === 'POST' && {
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ email }),
-              }),
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email }),
           };
 
-          const response = await fetch(
-              `http://localhost:8080/api/list/${email}`,
-              method === 'GET' ? undefined : options
-          );
+          const response = await fetch(`http://localhost:8080/api/v1/api/list`, options);
 
           if (!response.ok) {
-              console.log(response);
-              throw new Error('Failed to fetch data');
+              const errorText = await response.text();
+              throw new Error(errorText || 'Failed to fetch data');
           }
+
           const result = await response.json();
           setData(result);
       } catch (err) {
           setError(err.message);
       }
+
   };
 
 
