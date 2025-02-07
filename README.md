@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mulamumammba API Manager Web Client
 
-## Getting Started
 
-First, run the development server:
+![1](https://github.com/user-attachments/assets/1f4438db-afd5-438c-8130-ee08ca09553f)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Overview
+Mulamumammba API Manager Web Client is a React-based frontend built with Next.js. It serves as the user interface for testing various APIs and creating RESTful APIs by integrating with the Mulamumammba API Manager backend.
+
+## Features
+- User authentication (login and registration)
+- API testing UI for providing base URLs and endpoints
+- Dashboard to manage created APIs
+- Responsive and user-friendly design
+
+## Technologies Used
+- **Frontend Framework:** Next.js (React)
+- **Styling:** CSS Modules & Global CSS
+- **State Management:** Local State (extendable to Redux or Context API)
+- **API Communication:** Fetch API
+- **Backend:** Java with Springboot [(Located at this repo)](https://github.com/MulamuMammba/APIManager)
+
+## Directory Structure
+```
+└── mulamumammba-apimanager-webclient/
+    ├── README.md
+    ├── jsconfig.json
+    ├── next.config.mjs
+    ├── package.json
+    ├── public/
+    └── src/
+        └── app/
+            ├── globals.css
+            ├── layout.js
+            ├── page.js
+            ├── page.module.css
+            ├── dashboard/
+            │   ├── dashboard.css
+            │   └── page.js
+            ├── login/
+            │   └── page.js
+            └── register/
+                └── page.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting Started
+### Prerequisites
+- Node.js (v16+ recommended)
+- npm or yarn
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/mulamumammba-apimanager-webclient.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd mulamumammba-apimanager-webclient
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+4. Start the development server:
+   ```sh
+   npm run dev
+   ```
+5. The application will be available at `http://localhost:3000`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## API Integration
+This frontend is designed to communicate with the Mulamumammba API Manager backend. Ensure the backend is running and update API URLs in the codebase accordingly.
 
-## Learn More
+## Available Pages
+- **Home (`/`)** - Landing page
+- **Login (`/login`)** - User authentication page
+- **Register (`/register`)** - User registration page
+- **Dashboard (`/dashboard`)** - API management interface
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
+Contributions are welcome! Fork the repository and submit a pull request.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
+This project is licensed under the MIT License.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Additional Screenshots
 
-## Deploy on Vercel
+![3](https://github.com/user-attachments/assets/3b331ea3-2862-4e0f-809d-1b12159c4572)
+![2](https://github.com/user-attachments/assets/63ff5880-3ec5-4e12-820b-2ee022902da9)
+![1](https://github.com/user-attachments/assets/d0807c66-c247-43b6-bb92-0f3eb61f4494)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
